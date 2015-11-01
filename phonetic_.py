@@ -12,17 +12,14 @@ alf = {'a': 'alpha', 'b': 'bravo', 'c': 'charlie', 'd': 'delta', 'e': 'echo', 'f
                  Functions under this line
 '''
 
+class create_wordlist:
 
-def create_wordlist():
     file = open("words.txt")
     lines = file.readlines()
     file.close()
-    return lines
-
 
 def word():                                      # Gets a random word for the test
-    word = create_wordlist()[random.randrange(0, 10000)].rstrip("\n")
-    # word = random_word.rstrip("\n")
+    word = create_wordlist.lines[random.randrange(0, 10000)].rstrip("\n")
     return word
 
 
@@ -80,7 +77,7 @@ def cheatsheet(word_listed):                     # For debugging or if a beginne
 
 
 def main():
-    create_wordlist()
+    wordlist_object = create_wordlist()
     print("")
     print("")
     print ("welcome to phonetic spelling test!")
