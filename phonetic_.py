@@ -2,22 +2,31 @@
 
 import random
 
-alf = {'a':'alpha', 'b':'bravo', 'c':'charlie', 'd':'delta', 'e':'echo', 'f':'foxtrot', 'g':'golf', 'h':'hotel', 'i':'india', 'j':'juliet', 'k':'kilo', 'l':'lima', 'm':'mike', 'n':'november', 'o':'oscar', 'p':'papa', 'q':'quebec', 'r':'romeo', 's':'sierra', 't':'tango', 'u':'uniform', 'v':'victor', 'w':'whiskey', 'x':'x-ray', 'y':'yankee', 'z':'zulu'}
+alf = {'a': 'alpha', 'b': 'bravo', 'c': 'charlie', 'd': 'delta', 'e': 'echo', 'f': 'foxtrot', 'g': 'golf', 'h': 'hotel',
+       'i': 'india', 'j': 'juliet', 'k': 'kilo', 'l': 'lima', 'm': 'mike', 'n': 'november', 'o': 'oscar', 'p': 'papa',
+       'q': 'quebec', 'r': 'romeo', 's': 'sierra', 't': 'tango', 'u': 'uniform', 'v': 'victor', 'w': 'whiskey', 'x':
+       'x-ray', 'y': 'yankee', 'z': 'zulu'}
 
 '''
                  imports and global variables above this line
                  Functions under this line
-''' 
-    
-def word():                                     #Gets a random word for the test
+'''
+
+
+def create_wordlist():
     file = open("words.txt")
     lines = file.readlines()
-    random_word = lines[random.randrange(0,10000)]
     file.close()
-    word = random_word.rstrip("\n")
+    return lines
+
+
+def word():                                      # Gets a random word for the test
+    word = create_wordlist()[random.randrange(0, 10000)].rstrip("\n")
+    # word = random_word.rstrip("\n")
     return word
 
-def word_list(word):                            #Makes a list of the chosen word
+
+def word_list(word):                            # Makes a list of the chosen word
     print ("")
     word_list = []
     for letter in word:
@@ -26,8 +35,8 @@ def word_list(word):                            #Makes a list of the chosen word
     
     
 def answer(word, word_listed): 
-                           #Lets the user input answer and checks if its correct
-                           #while keeping a running total of the mistakes
+                           # Lets the user input answer and checks if its correct
+                           # while keeping a running total of the mistakes
     print ("")
 #   answer = []            # debugging
     total_mistakes = 0
@@ -52,7 +61,8 @@ def answer(word, word_listed):
     
     return answer
 
-def cheatsheet(word_listed):                     #For debugging or if a beginner
+
+def cheatsheet(word_listed):                     # For debugging or if a beginner
     cheat = str(raw_input("do you want a cheatsheet? (yes or any key): "))
     if cheat.lower() == "y" or cheat.lower() == "yes":
         print ("")
@@ -68,13 +78,14 @@ def cheatsheet(word_listed):                     #For debugging or if a beginner
              Main loop under under this line
 '''
 
+
 def main():
+    create_wordlist()
     print("")
     print("")
     print ("welcome to phonetic spelling test!")
     print("")
-    print("")    
-    
+    print("")
     done = False
     while not done:
         print ("")
@@ -100,9 +111,6 @@ def main():
                 print ("you have to type either yes, y, no or n. please answer again")
                 done = True
     
-    
-
-
 
 if __name__ == "__main__":
     main()
