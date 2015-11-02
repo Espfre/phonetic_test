@@ -12,26 +12,33 @@ alf = {'a': 'alpha', 'b': 'bravo', 'c': 'charlie', 'd': 'delta', 'e': 'echo', 'f
                  Functions under this line
 '''
 
-class create_wordlist:
 
-    file = open("words.txt")
-    lines = file.readlines()
-    file.close()
+class CreateWordList:
 
-def word():                                      # Gets a random word for the test
-    word = create_wordlist.lines[random.randrange(0, 10000)].rstrip("\n")
-    return word
+    def __init__(self, ):
+        self.lines = {}
+        pass
+
+    def fileread(self, filename):
+        content = open(filename)
+        self.lines = content.readlines()
+        content.close()
+        return self.lines
+
+    def word(self):                                      # Gets a random word for the test
+        word = self.lines[random.randrange(0, 10000)].rstrip("\n")
+        return word
 
 
 def word_list(word):                            # Makes a list of the chosen word
     print ("")
     word_list = []
     for letter in word:
-        word_list.append (alf.get(letter))
+        word_list.append(alf.get(letter))
     return word_list    
     
     
-def answer(word, word_listed): 
+def answer(word, word_listed):
                            # Lets the user input answer and checks if its correct
                            # while keeping a running total of the mistakes
     print ("")
@@ -77,7 +84,8 @@ def cheatsheet(word_listed):                     # For debugging or if a beginne
 
 
 def main():
-    wordlist_object = create_wordlist()
+    word_object = CreateWordList()
+    word_object.fileread("words.txt")
     print("")
     print("")
     print ("welcome to phonetic spelling test!")
@@ -86,11 +94,12 @@ def main():
     done = False
     while not done:
         print ("")
-        word_final = word()
-        word_listed = word_list(word_final)
+
+        word = word_object.word()
+        word_listed = word_list(word)
         cheatsheet(word_listed)
-        print word_final
-        answer_final = answer(word_final, word_listed)
+        print word
+        answer(word, word_listed)
         
         for i in range(10):
             quit = str(raw_input("do you want another word to spell? : "))
