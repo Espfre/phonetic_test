@@ -1,6 +1,7 @@
 import random
-class CreateWordList:
 
+
+class CreateWordList:
     def __init__(self, ):
         self.lines = {}
         pass
@@ -11,6 +12,6 @@ class CreateWordList:
         content.close()
         return self.lines
 
-    def word(self):                                      # Gets a random word for the test
+    def word(self):  # Gets a random word for the test
         word = self.lines[random.randrange(0, 10000)].rstrip("\n")
         return word
