@@ -1,6 +1,6 @@
 #!/usr/bin/python2
 
-import PhoneticClasses
+import WordlistCreator
 
 alf = {'a': 'alpha', 'b': 'bravo', 'c': 'charlie', 'd': 'delta', 'e': 'echo', 'f': 'foxtrot', 'g': 'golf', 'h': 'hotel',
        'i': 'india', 'j': 'juliet', 'k': 'kilo', 'l': 'lima', 'm': 'mike', 'n': 'november', 'o': 'oscar', 'p': 'papa',
@@ -13,17 +13,9 @@ alf = {'a': 'alpha', 'b': 'bravo', 'c': 'charlie', 'd': 'delta', 'e': 'echo', 'f
 '''
 
 
-def word_list(word):                            # Makes a list of the chosen word
-    print ("")
-    word_list = []
-    for letter in word:
-        word_list.append(alf.get(letter))
-    return word_list    
-    
-    
-def answer(word, word_listed):
-                           # Lets the user input answer and checks if its correct
-                           # while keeping a running total of the mistakes
+def answer(word):
+                            # Lets the user input answer and checks if its correct
+                            # while keeping a running total of the mistakes
     print ("")
 #   answer = []            # debugging
     total_mistakes = 0
@@ -45,7 +37,7 @@ def answer(word, word_listed):
             total_mistakes += 1
         print("")
     print ("you got a total of, " + str(total_mistakes) + " answers wrong")
-    
+
     return answer
 
 
@@ -59,7 +51,7 @@ def cheatsheet(word_listed):                     # For debugging or if a beginne
         print ("")
         print ("Ok. lets start the test")
         print("")
-        print("") 
+        print("")
 
 '''
              Main loop under under this line
@@ -67,8 +59,8 @@ def cheatsheet(word_listed):                     # For debugging or if a beginne
 
 
 def main():
-    word_object = PhoneticClasses.CreateWordList()
-    word_object.fileread("words.txt")
+    random_word_fetcher = WordlistCreator.CreateWordList()
+    random_word_fetcher.fileread("words.txt")
     print("")
     print("")
     print ("welcome to phonetic spelling test!")
@@ -78,11 +70,11 @@ def main():
     while not done:
         print ("")
 
-        word = word_object.word()
-        word_listed = word_list(word)
+        word = random_word_fetcher.word()
+        word_listed = random_word_fetcher.word_list(word)
         cheatsheet(word_listed)
         print word
-        answer(word, word_listed)
+        answer(word)
         
         for i in range(10):
             quit = str(raw_input("do you want another word to spell? : "))
