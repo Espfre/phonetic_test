@@ -7,8 +7,10 @@ alf = {'a': 'alpha', 'b': 'bravo', 'c': 'charlie', 'd': 'delta', 'e': 'echo', 'f
 
 
 class CreateWordList:
+    ''' creates a dictionary of words from a file that it can pull random words from
+    '''
 
-    def __init__(self, ):
+    def __init__(self):
         self.lines = {}
         pass
 
