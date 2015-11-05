@@ -1,66 +1,16 @@
 #!/usr/bin/python2
 
 import WordlistCreator
-
-alf = {'a': 'alpha', 'b': 'bravo', 'c': 'charlie', 'd': 'delta', 'e': 'echo', 'f': 'foxtrot', 'g': 'golf', 'h': 'hotel',
-       'i': 'india', 'j': 'juliet', 'k': 'kilo', 'l': 'lima', 'm': 'mike', 'n': 'november', 'o': 'oscar', 'p': 'papa',
-       'q': 'quebec', 'r': 'romeo', 's': 'sierra', 't': 'tango', 'u': 'uniform', 'v': 'victor', 'w': 'whiskey', 'x':
-       'x-ray', 'y': 'yankee', 'z': 'zulu'}
-
-'''
-                 imports and global variables above this line
-                 Functions under this line
-'''
-
-
-def answer(word):
-                            # Lets the user input answer and checks if its correct
-                            # while keeping a running total of the mistakes
-    print ("")
-#   answer = []            # debugging
-    total_mistakes = 0
-    for i in word:
-        print ("")
-        print ("The character to spell is: " + i)
-        print("")
-        answer_current = (raw_input("spell the character using the phonetic alphabet: ").lower())
-#       answer.append(answer_current)
-        trans = alf.get(i)
-
-        if answer_current == trans:
-            print("")
-            print ("Correct")
-        else:
-            print("")
-            print ("wrong")
-            print ("The correct answer is: " + trans)
-            total_mistakes += 1
-        print("")
-    print ("you got a total of, " + str(total_mistakes) + " answers wrong")
-
-    return answer
-
-
-def cheatsheet(word_listed):                     # For debugging or if a beginner
-    cheat = str(raw_input("do you want a cheatsheet? (yes or any key): "))
-    if cheat.lower() == "y" or cheat.lower() == "yes":
-        print ("")
-        print word_listed
-        print("")
-    else:
-        print ("")
-        print ("Ok. lets start the test")
-        print("")
-        print("")
-
-'''
-             Main loop under under this line
-'''
+import CheatSheet
+import Spelling_loop
+import Stats
 
 
 def main():
     random_word_fetcher = WordlistCreator.CreateWordList()
     random_word_fetcher.fileread("words.txt")
+    helper = CheatSheet.Helper()
+    spelling = Spelling_loop.Spelling()
     print("")
     print("")
     print ("welcome to phonetic spelling test!")
@@ -72,9 +22,11 @@ def main():
 
         word = random_word_fetcher.word()
         word_listed = random_word_fetcher.word_list(word)
-        cheatsheet(word_listed)
+        helper.cheat_sheet(word_listed)
+        result = Stats.StatsHolder()
+        print ("use the phonetic alphabet to spell the word:")
         print word
-        answer(word)
+        spelling.questions(word, result)
         
         for i in range(10):
             quit = str(raw_input("do you want another word to spell? : "))
