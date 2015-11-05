@@ -9,5 +9,8 @@ class StatsHolder:
     def results(self):
         print("")
         print ("you got " + str(self.total_correct) + " points" + " out of " + str(self.total))
-        print("Correct answers: {:.2%} ".format(self.total_correct / self.total))
+        print("Correct answers: {:.2%} ".format(self.floatCorrectPercentage()))
+
+    def floatCorrectPercentage(self):
+        return self.total_correct / float(self.total)
 
